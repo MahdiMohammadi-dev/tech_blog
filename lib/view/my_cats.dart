@@ -155,7 +155,10 @@ class _MyCatsState extends State<MyCats> {
                                   InkWell(
                                     onTap: () {
                                       setState(() {
-                                        likeCats.remove(tagName[index]);
+                                        if (!likeCats
+                                            .contains(tagName[index])) {
+                                          likeCats.remove(tagName[index]);
+                                        }
                                       });
                                     },
                                     child: const Icon(
