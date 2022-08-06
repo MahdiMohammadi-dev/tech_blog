@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tech_blog/colors.dart';
+
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/view/profile_screen.dart';
+import '../component/colors.dart';
 import 'home_screen.dart';
 
 class MainScreen extends StatefulWidget {
