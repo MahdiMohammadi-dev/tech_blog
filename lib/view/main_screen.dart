@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:tech_blog/component/MyComponent.dart';
+import 'package:tech_blog/component/strings.dart';
 
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/view/profile_screen.dart';
 import '../component/colors.dart';
 import 'home_screen.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
-
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
-
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 
-class _MainScreenState extends State<MainScreen> {
-  var selectedPageIndex = 0;
+class MainScreen extends StatelessWidget {
+  RxInt selectedPageIndex = 0.obs;
+
+  MainScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -57,22 +56,28 @@ class _MainScreenState extends State<MainScreen> {
               const Divider(
                 color: SolidColor.dividercolor,
               ),
-              const ListTile(
-                title: Text("اشتراک گذاری تک بلاگ",
+              ListTile(
+                title: const Text("اشتراک گذاری تک بلاگ",
                     style: TextStyle(
                       fontFamily: 'iransans-regular',
                       color: Colors.black,
                     )),
+                onTap: () async {
+                  await Share.share(Strings.sharetechblog);
+                },
               ),
               const Divider(
                 color: SolidColor.dividercolor,
               ),
-              const ListTile(
-                title: Text("تک بلاگ در گیت هاب",
+               ListTile(
+                title: const Text("تک بلاگ در گیت هاب",
                     style: TextStyle(
                       fontFamily: 'iransans-regular',
                       color: Colors.black,
                     )),
+                onTap: () {
+                  geturl(Strings.techbloggiturl);
+                },
               ),
               const Divider(
                 color: SolidColor.dividercolor,
@@ -108,12 +113,15 @@ class _MainScreenState extends State<MainScreen> {
       body: Stack(
         children: [
           Positioned.fill(
-            child: IndexedStack(
-              index: selectedPageIndex,
-              children: [
-                HomeScreen(size: size, bodymargin: bodymargin), //0  Screen 1
-                ProfileScreen(size: size, bodymargin: bodymargin), //1 Screen 2
-              ],
+            child: Obx(
+              () => IndexedStack(
+                index: selectedPageIndex.value,
+                children: [
+                  HomeScreen(size: size, bodymargin: bodymargin), //0  Screen 1
+                  ProfileScreen(
+                      size: size, bodymargin: bodymargin), //1 Screen 2
+                ],
+              ),
             ),
           ),
           BottonNav(
@@ -121,9 +129,7 @@ class _MainScreenState extends State<MainScreen> {
             bodymargin: bodymargin,
             changeScreen: (int value) {
               WidgetsBinding.instance.addPostFrameCallback((_) {
-                setState(() {
-                  selectedPageIndex = value;
-                });
+                selectedPageIndex.value = value;
               });
             },
           ),

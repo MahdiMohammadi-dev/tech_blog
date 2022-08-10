@@ -1,5 +1,6 @@
 class Strings {
   static const String viewMoreHotText = "مشاهده داغ ترین نوشته ها";
+  static const String techbloggiturl = "https://github.com/MahdiMohammadi-dev/tech_blog";
   static const String viewHotPodcast = "مشاهده داغ ترین پادکست ها";
   static const String relatedArticales = "مقالات مرتبط";
   static const String submitArticle = " ارسال مقاله";
@@ -15,6 +16,13 @@ class Strings {
 
 برای ارسال مطلب و پادکست باید حتما 
 ثبت نام کنی """;
+static const String sharetechblog = """
+
+سلام دوست من؛من از تکبلاگ استفاده میکنم تو هم به ما بپیوند\n
+
+www.sasansafari.com
+
+""";
 
   static const String congragulation = """تبریک میگم ، ایمیل با موفقیت تایید شد
 لطفا اطلاعات ثبت نام رو کامل کن""";

@@ -79,7 +79,7 @@ class _MainPageState extends State<MainPage> {
          Locale('fa', ''), // فارسی
       ],
       debugShowCheckedModeBanner: false,
-      home: const MainScreen(),
+      home:  MainScreen(),
     );
   }
 }

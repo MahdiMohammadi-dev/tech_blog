@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tech_blog/models/fake_data.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'colors.dart';
 
 class MyDivider extends StatelessWidget {
@@ -21,10 +22,8 @@ class MyDivider extends StatelessWidget {
   }
 }
 
-
 class Tag_List_Main extends StatelessWidget {
-
-   Tag_List_Main({
+  Tag_List_Main({
     Key? key,
     required this.bodymargin,
     required this.index,
@@ -71,10 +70,8 @@ class Tag_List_Main extends StatelessWidget {
   }
 }
 
-
 class Tag_List_Like_Add extends StatelessWidget {
-
-   Tag_List_Like_Add({
+  Tag_List_Like_Add({
     Key? key,
     required this.bodymargin,
     required this.index,
@@ -115,8 +112,19 @@ class Tag_List_Like_Add extends StatelessWidget {
                   fontFamily: 'iransans-regular',
                 ),
               ),
+              
             ],
           ),
         ));
+  }
+}
+
+geturl(String url) async {
+  var uri = Uri.parse(url);
+
+  if (await launchUrl(uri)) {
+    await geturl(url);
+  } else {
+    print("The Url Dosen't Launch!");
   }
 }
