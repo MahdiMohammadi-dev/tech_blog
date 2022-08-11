@@ -1,3 +1,5 @@
+import 'package:tech_blog/component/api_link.dart';
+
 class PodcastModel {
   String? id;
   String? title;
@@ -15,10 +17,10 @@ class PodcastModel {
     required this.createdAt,
   });
 
-  PodcastModel.fromJasaon(Map<String, dynamic> element) {
+  PodcastModel.fromJason(Map<String, dynamic> element) {
     id = element["id"];
     title = element["title"];
-    poster = element["poster"];
+    poster = ApiLink.hostdlurl+ element["poster"];
     publisher = element["publisher"];
     view = element["view"];
     createdAt = element["created_at"];
