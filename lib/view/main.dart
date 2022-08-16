@@ -2,7 +2,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:tech_blog/view/RegisterPage.dart';
-import 'package:tech_blog/view/main_screen.dart';
+import 'package:tech_blog/view/article_list_screen.dart';
+import 'package:tech_blog/view/mainscreen/main_screen.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -79,7 +80,7 @@ class _MainPageState extends State<MainPage> {
          Locale('fa', ''), // فارسی
       ],
       debugShowCheckedModeBanner: false,
-      home:  MainScreen(),
+      home:   ArticleListScreen(),
     );
   }
 }

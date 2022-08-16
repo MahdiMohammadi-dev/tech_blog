@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
+import 'package:tech_blog/controller/home_screencontroller.dart';
 import 'package:tech_blog/models/fake_data.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'colors.dart';
@@ -32,6 +35,8 @@ class Tag_List_Main extends StatelessWidget {
   final double bodymargin;
   var index;
 
+   HomeScreenController homeScreenController = Get.put(HomeScreenController());
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -56,7 +61,8 @@ class Tag_List_Main extends StatelessWidget {
                 width: 5,
               ),
               Text(
-                tagName[index].title,
+                // Get.find<HomeScreenController>().tagList[index].title!,
+                homeScreenController.tagList[index].title!,
                 style: const TextStyle(
                   fontSize: 11,
                   color: SolidColor.lightText,
@@ -128,3 +134,54 @@ geturl(String url) async {
     print("The Url Dosen't Launch!");
   }
 }
+
+class Loading extends StatelessWidget {
+  const Loading({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const SpinKitCircle(
+       color: Colors.purple,
+        size: 60,
+         );
+  }
+}
+
+
+
+  PreferredSize appbar(String title) {
+    return PreferredSize(
+      preferredSize: const Size.fromHeight(60),
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          actions:  [
+             Padding(
+               padding:  const EdgeInsets.only(left:16),
+               child: Center(
+                child: Text(title,style: const TextStyle(
+                  color: Color.fromARGB(255, 110, 0, 129),
+                  fontFamily: 'iransans-medium',
+                  fontSize: 15,
+                ),),
+               
+               ),
+             ),
+          ],
+          leading: Container(
+            height: 40,
+            width: 40,
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 75, 0, 88),
+              shape: BoxShape.circle,
+            ),
+            child:const Icon(Icons.keyboard_arrow_right,size: 30,)
+          ),
+        ),
+      ),
+    );
+  }

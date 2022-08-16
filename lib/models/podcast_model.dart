@@ -17,7 +17,11 @@ class PodcastModel {
     required this.createdAt,
   });
 
-  PodcastModel.fromJason(Map<String, dynamic> element) {
+
+
+
+
+  PodcastModel.fromJson(Map<String, dynamic> element) {
     id = element["id"];
     title = element["title"];
     poster = ApiLink.hostdlurl+ element["poster"];

@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/models/data_model.dart';
 import 'package:tech_blog/models/fake_data.dart';
-import 'package:tech_blog/view/home_screen.dart';
 
 import '../component/MyComponent.dart';
 import '../component/strings.dart';

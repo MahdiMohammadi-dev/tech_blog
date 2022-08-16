@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:tech_blog/component/MyComponent.dart';
+import 'package:tech_blog/component/colors.dart';
 import 'package:tech_blog/component/strings.dart';
-
 import 'package:tech_blog/gen/assets.gen.dart';
-import 'package:tech_blog/view/profile_screen.dart';
-import '../component/colors.dart';
 import 'home_screen.dart';
+import 'profile_screen.dart';
 
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 
