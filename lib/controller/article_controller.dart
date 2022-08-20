@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:tech_blog/component/api_link.dart';
 import 'package:tech_blog/models/article_model.dart';

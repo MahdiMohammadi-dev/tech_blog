@@ -16,8 +16,8 @@ class ArticleListScreen extends StatelessWidget {
       appBar: appbar("مقالات جدید"),
       body: Obx(
         (() => Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SizedBox(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
                 child: ListView.builder(
                     scrollDirection: Axis.vertical,
                     itemCount: articleController.articllist.length,
@@ -28,15 +28,16 @@ class ArticleListScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             SizedBox(
-                              width: Get.width/3,
-                              height: Get.height/6,
+                              width: Get.width / 3,
+                              height: Get.height / 6,
                               child: CachedNetworkImage(
-                                imageUrl: articleController.articllist[index].image!,
+                                imageUrl:
+                                    articleController.articllist[index].image!,
                                 imageBuilder: (context, imageprovider) {
                                   return Container(
                                     decoration: BoxDecoration(
-                                      borderRadius:
-                                          const BorderRadius.all(Radius.circular(16)),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(16)),
                                       image: DecorationImage(
                                         image: imageprovider,
                                         fit: BoxFit.cover,
@@ -47,55 +48,74 @@ class ArticleListScreen extends StatelessWidget {
                                 placeholder: (context, url) {
                                   return const Loading();
                                 },
-                                errorWidget: (context,url , error){
-                                  return const Icon(Icons.image_not_supported_outlined,size: 50,color: Colors.grey);
+                                errorWidget: (context, url, error) {
+                                  return const Icon(
+                                      Icons.image_not_supported_outlined,
+                                      size: 50,
+                                      color: Colors.grey);
                                 },
                               ),
                             ),
-                            const SizedBox(width: 16,),
+                            const SizedBox(
+                              width: 16,
+                            ),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 SizedBox(
-                                  width: Get.width/2,
-                                  child: Text(articleController.articllist[index].title!,
-                                  textDirection: TextDirection.rtl,
-                                  textAlign: TextAlign.center,
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 2,
-                                  style: const TextStyle(
-                                    fontFamily: 'iransans-medium',
-                                    color: Colors.black,
-                                    fontSize:13,
-                                  ),),
+                                  width: Get.width / 2,
+                                  child: Text(
+                                    articleController.articllist[index].title!,
+                                    textDirection: TextDirection.rtl,
+                                    textAlign: TextAlign.center,
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 2,
+                                    style: const TextStyle(
+                                      fontFamily: 'iransans-medium',
+                                      color: Colors.black,
+                                      fontSize: 13,
+                                    ),
+                                  ),
                                 ),
-                                const SizedBox(height: 16,),
+                                const SizedBox(
+                                  height: 16,
+                                ),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(articleController.articllist[index].author!,style: const TextStyle(
-                                  fontFamily: 'iransans-medium',
-                                  fontSize:10,
-                                  color: Colors.grey,
-                                ),),
-                                const SizedBox(width: 10,),
-                                 Text(articleController.articllist[index].view!+"بازدید",style: const TextStyle(
-                                  fontFamily: 'iransans-medium',
-                                  color: Colors.grey,
-                                  fontSize:10,
-                                ),),
+                                    Text(
+                                      articleController
+                                          .articllist[index].author!,
+                                      style: const TextStyle(
+                                        fontFamily: 'iransans-medium',
+                                        fontSize: 10,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      articleController
+                                              .articllist[index].view! +
+                                          "بازدید",
+                                      style: const TextStyle(
+                                        fontFamily: 'iransans-medium',
+                                        color: Colors.grey,
+                                        fontSize: 10,
+                                      ),
+                                    ),
                                   ],
                                 )
                               ],
                             )
-
-                         
                           ],
                         ),
                       );
                     })),
               ),
-        )),
+            )),
       ),
     ));
   }

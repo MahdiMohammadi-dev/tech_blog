@@ -32,6 +32,10 @@ class GradientColors {
     Color.fromARGB(255, 0, 0, 0),
     Color.fromARGB(255, 63, 63, 63)
   ];
+   static const List<Color> singleappbargradient = [
+    Color.fromARGB(255, 46, 3, 71),
+    Color.fromARGB(0, 0, 0, 0)
+  ];
   static const List<Color> homepostercovergradient = [
     Color.fromARGB(0, 0, 0, 0),
     Color.fromARGB(195, 72, 28, 88),

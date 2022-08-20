@@ -35,6 +35,10 @@ class $AssetsImagesGen {
   AssetGenImage get programming =>
       const AssetGenImage('assets/images/programming.jpg');
 
+  /// File path: assets/images/single_place_holder.jpg
+  AssetGenImage get singlePlaceHolder =>
+      const AssetGenImage('assets/images/single_place_holder.jpg');
+
   /// File path: assets/images/techblog.png
   AssetGenImage get techblog =>
       const AssetGenImage('assets/images/techblog.png');
