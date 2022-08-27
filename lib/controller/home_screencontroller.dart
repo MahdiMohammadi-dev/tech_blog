@@ -4,7 +4,6 @@ import 'package:tech_blog/models/podcast_model.dart';
 import 'package:tech_blog/models/poster_model.dart';
 import 'package:tech_blog/models/tag_model.dart';
 import 'package:tech_blog/services/dio_sevice.dart';
-import 'dart:developer';
 import '../models/article_model.dart';
 
 class HomeScreenController extends GetxController {

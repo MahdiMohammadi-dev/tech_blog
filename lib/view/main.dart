@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get/get.dart';
+import 'package:tech_blog/view/article_list_screen.dart';
 import 'package:tech_blog/view/single.dart';
 
 class MyHttpOverrides extends HttpOverrides {
@@ -36,13 +38,8 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-     
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
+    return  GetMaterialApp(
+     locale: const Locale('fa'),
       theme: ThemeData(
 
             inputDecorationTheme: InputDecorationTheme(
@@ -74,11 +71,8 @@ class _MainPageState extends State<MainPage> {
                   ),
           ),
       ),
-      supportedLocales: const [
-         Locale('fa', ''), // فارسی
-      ],
       debugShowCheckedModeBanner: false,
-      home:   const Single(),
+      home: ArticleListScreen(),
     );
   }
 }
