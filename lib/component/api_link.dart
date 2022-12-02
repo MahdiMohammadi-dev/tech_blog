@@ -5,6 +5,6 @@ class ApiLink {
   static const getarticleitem =
       baseurl + "article/get.php?command=new&user_id=1";
 
-  static const getarticleinfo =
-      baseurl + "article/get.php?command=info&id=1&user_id=";
+ 
+      
 }

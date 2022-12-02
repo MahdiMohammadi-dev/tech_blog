@@ -8,8 +8,10 @@ import 'package:tech_blog/view/single.dart';
 
 class ArticleListScreen extends StatelessWidget {
   ArticleListScreen({Key? key}) : super(key: key);
-  ListArticleController listArticleController =Get.put(ListArticleController());
-  SingleArticleController singleArticleController =Get.put(SingleArticleController());
+  ListArticleController listArticleController =
+      Get.put(ListArticleController());
+  SingleArticleController singleArticleController =
+      Get.put(SingleArticleController());
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -25,10 +27,8 @@ class ArticleListScreen extends StatelessWidget {
                     itemBuilder: ((context, index) {
                       return GestureDetector(
                         onTap: () {
-                          singleArticleController.id.value = int.parse(
-                              listArticleController.articllist[index].id.toString());
-
-                          Get.to( Single());
+                          singleArticleController.getArticleInfo(
+                              listArticleController.articllist[index].id);
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),

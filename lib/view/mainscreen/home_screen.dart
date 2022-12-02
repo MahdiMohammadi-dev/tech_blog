@@ -1,13 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:tech_blog/component/MyComponent.dart';
 import 'package:tech_blog/component/colors.dart';
 import 'package:tech_blog/component/strings.dart';
+import 'package:tech_blog/controller/Single_Article_Controller.dart';
 import 'package:tech_blog/controller/home_screencontroller.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/models/fake_data.dart';
+import 'package:tech_blog/view/article_list_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({
@@ -20,7 +21,7 @@ class HomeScreen extends StatelessWidget {
   final double bodymargin;
 
   HomeScreenController homeScreenController = Get.put(HomeScreenController());
-
+  SingleArticleController singleArticleController = Get.put(SingleArticleController());
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -42,8 +43,8 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(
                     height: 16,
                   ),
-            
-                  tags(),
+              
+                 tags(),
             
                   ///see more "moshahede daghtarin neveshte "
             
@@ -51,7 +52,10 @@ class HomeScreen extends StatelessWidget {
                     height: 15,
                   ),
             
-                  const SeeMoreDaghtarinNeveshte(),
+                  GestureDetector(onTap: (() {
+                   Get.to(ArticleListScreen());
+                  }),
+                    child: const SeeMoreDaghtarinNeveshte()),
             
                   ///listview 2
             
@@ -77,6 +81,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget topvisited() {
+    SingleArticleController singleArticleController = Get.put(SingleArticleController());
     return SizedBox(
       height: size.height / 3.5,
       child: Obx(
@@ -86,105 +91,111 @@ class HomeScreen extends StatelessWidget {
           itemBuilder: ((context, index) {
             ///blogitem
 
-            return Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(
-                      right: index == 0
-                          ? MediaQuery.of(context).size.width / 10
-                          : 25),
-                  child: SizedBox(
-                    height: size.height / 5.3,
-                    width: size.width / 2.5,
-                    child: Stack(
-                      children: [
-                        CachedNetworkImage(
-                          imageUrl:
-                              homeScreenController.topVisitedList[index].image!,
-                          imageBuilder: (context, imageprovider) => Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                              image: DecorationImage(
-                                  image: imageprovider, fit: BoxFit.cover),
-                            ),
-                            foregroundDecoration:const BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(16)
+            return GestureDetector(
+              onTap: (() {
+               singleArticleController.getArticleInfo(
+                 homeScreenController.topVisitedList[index].id);
+              }),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(
+                        right: index == 0
+                            ? MediaQuery.of(context).size.width / 10
+                            : 25),
+                    child: SizedBox(
+                      height: size.height / 5.3,
+                      width: size.width / 2.5,
+                      child: Stack(
+                        children: [
+                          CachedNetworkImage(
+                            imageUrl:
+                                homeScreenController.topVisitedList[index].image!,
+                            imageBuilder: (context, imageprovider) => Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16),
+                                image: DecorationImage(
+                                    image: imageprovider, fit: BoxFit.cover),
                               ),
-                              gradient: LinearGradient(
-                                colors: [
-                                  Colors.black,
-                                  Color.fromARGB(0, 0, 0, 0),
-                                ],
-                                begin: Alignment.bottomCenter,
-                               end: Alignment.topCenter, 
+                              foregroundDecoration:const BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(16)
+                                ),
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Colors.black,
+                                    Color.fromARGB(0, 0, 0, 0),
+                                  ],
+                                  begin: Alignment.bottomCenter,
+                                 end: Alignment.topCenter, 
+                                ),
                               ),
                             ),
+                            placeholder: (context, url) => const Loading(),
+                            errorWidget: (context, url, error) => const Icon(
+                                Icons.image_not_supported_outlined,
+                                size: 60,
+                                color: Colors.grey),
                           ),
-                          placeholder: (context, url) => const Loading(),
-                          errorWidget: (context, url, error) => const Icon(
-                              Icons.image_not_supported_outlined,
-                              size: 60,
-                              color: Colors.grey),
-                        ),
-                        Positioned(
-                          bottom: 10,
-                          left: 0,
-                          right: 0,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text(
-                                homeScreenController
-                                    .topVisitedList[index].author!,
-                                style: const TextStyle(
-                                    color: SolidColor.lightText,
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 12.0,
-                                    fontFamily: 'iransans-regular'),
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    homeScreenController
-                                        .topVisitedList[index].view!,
-                                    style: const TextStyle(
+                          Positioned(
+                            bottom: 10,
+                            left: 0,
+                            right: 0,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(
+                                  homeScreenController
+                                      .topVisitedList[index].author!,
+                                  style: const TextStyle(
                                       color: SolidColor.lightText,
                                       fontWeight: FontWeight.w300,
                                       fontSize: 12.0,
-                                      fontFamily: 'iransans-regular',
+                                      fontFamily: 'iransans-regular'),
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      homeScreenController
+                                          .topVisitedList[index].view!,
+                                      style: const TextStyle(
+                                        color: SolidColor.lightText,
+                                        fontWeight: FontWeight.w300,
+                                        fontSize: 12.0,
+                                        fontFamily: 'iransans-regular',
+                                      ),
                                     ),
-                                  ),
-                                  const Icon(
-                                    Icons.remove_red_eye_sharp,
-                                    color: Colors.white,
-                                  ),
-                                ],
-                              ),
-                            ],
+                                    const Icon(
+                                      Icons.remove_red_eye_sharp,
+                                      color: Colors.white,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                      right: index == 0
-                          ? MediaQuery.of(context).size.width / 10
-                          : 25),
-                  child: SizedBox(
-                    width: size.width / 2.5,
-                    child: Text(
-                      homeScreenController.topVisitedList[index].title!,
-                      style: const TextStyle(
-                        fontFamily: 'iransans-medium',
+                        ],
                       ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
                     ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: EdgeInsets.only(
+                        right: index == 0
+                            ? MediaQuery.of(context).size.width / 10
+                            : 25),
+                    child: SizedBox(
+                      width: size.width / 2.5,
+                      child: Text(
+                        homeScreenController.topVisitedList[index].title!,
+                        style: const TextStyle(
+                          fontFamily: 'iransans-medium',
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             );
           }),
         ),
@@ -333,14 +344,20 @@ class HomeScreen extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemCount: tagName.length,
           itemBuilder: ((context, index) {
-            return Padding(
-              padding: EdgeInsets.only(right: index == 0 ? bodymargin : 0),
+            return GestureDetector(
+              onTap:(){
+             singleArticleController.getArticleInfo(
+                 singleArticleController.releatedList[index].id);
+              },
               child: Padding(
-                padding:
-                    EdgeInsets.fromLTRB(8, 8, index == 0 ? bodymargin : 11, 8),
-                child: Tag_List_Main(
-                  bodymargin: bodymargin,
-                  index: index,
+                padding: EdgeInsets.only(right: index == 0 ? bodymargin : 0),
+                child: Padding(
+                  padding:
+                      EdgeInsets.fromLTRB(8, 8, index == 0 ? bodymargin : 11, 8),
+                  child: Tag_List_Main(
+                    bodymargin: bodymargin,
+                    index: index,
+                  ),
                 ),
               ),
             );
