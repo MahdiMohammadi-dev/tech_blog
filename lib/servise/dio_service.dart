@@ -21,7 +21,7 @@ class DioService {
 
     return await dio
         .post(url,
-            data: map,
+            data: dio_service.FormData.fromMap(map),
             options: Options(responseType: ResponseType.json, method: 'POST'))
         .then((value) {
       log(value.headers.toString());

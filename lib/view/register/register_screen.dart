@@ -91,6 +91,7 @@ class RegisterScreen extends StatelessWidget {
                     ),
                     ElevatedButton(
                         onPressed: () {
+                          registerController.register();
                           Navigator.pop(context);
                           _activatedCodeBottomSheet(context, size, textTheme);
                         },
